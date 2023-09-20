@@ -1,0 +1,65 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Navegador{
+- urls : List<String>
+- urlAtual : Integer
++ Navegador()
++ exibirPagina(url : String) : String
++ adicionarNovaAba() : boolean
++ atualizarPagina() : boolean
++ alternarAba(indice : int) : int
+}
+Navegador ..|> INavegador
+class MeuFoneZero{
+- midia : IMidia
+- telefone : ITelefone
+- navegador : INavegador
++ MeuFoneZero(midia : IMidia, telefone : ITelefone, navegador : INavegador)
++ MeuFoneZero()
++ reproduzir() : boolean
++ parar() : boolean
++ selecionarMidia(midia : String) : String
++ exibirPagina(url : String) : String
++ adicionarNovaAba() : boolean
++ atualizarPagina() : boolean
++ alternarAba(indice : int) : int
++ ligar(numero : String) : void
++ atender() : void
++ iniciarCorreioVoz() : void
+}
+class Telefone{
++ ligar(numero : String) : void
++ atender() : void
++ iniciarCorreioVoz() : void
+}
+Telefone ..|> ITelefone
+class Main{
++ {static} main(args : String[]) : void
+}
+class Midia{
+- midiaAtual : String
++ reproduzir() : boolean
++ parar() : boolean
++ selecionarMidia(midia : String) : String
+}
+Midia ..|> IMidia
+MeuFoneZero--"- midia" IMidia
+MeuFoneZero--"- telefone" ITelefone
+MeuFoneZero--"- navegador" INavegador
+interface INavegador{
+exibirPagina(url : String) : String
+adicionarNovaAba() : boolean
+atualizarPagina() : boolean
+alternarAba(indice : int) : int
+}
+interface ITelefone{
+ligar(numero : String) : void
+atender() : void
+iniciarCorreioVoz() : void
+}
+interface IMidia{
+reproduzir() : boolean
+parar() : boolean
+selecionarMidia(midia : String) : String
+}
+@enduml
